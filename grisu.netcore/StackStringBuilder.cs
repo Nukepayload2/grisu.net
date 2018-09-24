@@ -20,11 +20,11 @@ namespace GrisuDotNet
             _backBuffer[Index++] = ch;
         }
 
-        public void Append(string buf)
+        public void Append(char ch, int count)
         {
-            for (int i = 0; i < buf.Length; i++)
+            for (int i = 0; i < count; i++)
             {
-                _backBuffer[Index++] = buf[i];
+                _backBuffer[Index++] = ch;
             }
         }
 
@@ -33,27 +33,6 @@ namespace GrisuDotNet
             for (int i = 0; i < length; i++)
             {
                 _backBuffer[Index++] = buf[i];
-            }
-        }
-
-        public unsafe void AppendNumber0To999(int value)
-        {
-            Debug.Assert(value >= 0 && value <= 999);
-            char* begin = stackalloc char[3];
-            char* end = begin + 2;
-            char* cur = end;
-            while (value >= 10)
-            {
-                int a = value;
-                value /= 10;
-                int b = value * 10;
-                int digit = a - b;
-                *cur-- = (char)(48 + digit);
-            }
-            *cur = (char)(48 + value);
-            while (cur <= end)
-            {
-                _backBuffer[Index++] = *cur++;
             }
         }
 

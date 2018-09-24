@@ -557,22 +557,22 @@ namespace GrisuDotNet
                 if (digits_after_point > 0)
                 {
                     writer.Append('.');
-                    writer.Append(new string('0', -decimal_point));
+                    writer.Append('0', -decimal_point);
                     Debug.Assert(length <= digits_after_point - (-decimal_point));
                     writer.Append(decimal_digits, length);
                     int remaining_digits = digits_after_point - (-decimal_point) - length;
-                    writer.Append(new string('0', remaining_digits));
+                    writer.Append('0', remaining_digits);
                 }
             }
             else if (decimal_point >= length)
             {
                 // "decimal_rep0000.00000" or "decimal_rep.0000"
                 writer.Append(decimal_digits, length);
-                writer.Append(new string('0', decimal_point - length));
+                writer.Append('0', decimal_point - length);
                 if (digits_after_point > 0)
                 {
                     writer.Append('.');
-                    writer.Append(new string('0', digits_after_point));
+                    writer.Append('0', digits_after_point);
                 }
             }
             else
@@ -585,7 +585,7 @@ namespace GrisuDotNet
                 writer.Append(decimal_digits, decimal_point,
                                              length - decimal_point);
                 int remaining_digits = digits_after_point - (length - decimal_point);
-                writer.Append(new string('0', remaining_digits));
+                writer.Append('0', remaining_digits);
             }
         }
 
@@ -634,7 +634,7 @@ namespace GrisuDotNet
             }
             else
             {
-                writer.AppendNumber0To999(exponent);
+                writer.Append((char)('0' + exponent));
             }
         }
     }
